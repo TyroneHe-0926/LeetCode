@@ -55,6 +55,7 @@ public:
                 nexttemp->prev = head;
                 DLLNode* newnode = this->insert_node(key, value);
                 this->m.insert({key, newnode});
+                delete lrunode;
                 return;
             }
             else{
