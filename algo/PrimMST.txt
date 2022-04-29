@@ -1,0 +1,16 @@
+Prim's algorithm for constructing a minimum spanning tree
+
+V represents the number of vertices, and E represents the number of edges.
+Time Complexity: O(E⋅logV) for Binary heap, and O(E+V⋅logV) for Fibonacci heap
+Space Complexity: O(V)
+
+1. Initialize 2 sets with visited and unvisited vertices
+
+2. Select an unvisited vertice and put it into the set of visited vertices
+
+3. Of all the edges from the visited set to the unvisited, select the one with minimum weight as part of the MST
+
+4. Repeat step 2 and 3 until all vertices are visited
+
+
+“Kruskal’s algorithm” expands the “minimum spanning tree” by adding edges. Whereas “Prim’s algorithm” expands the “minimum spanning tree” by adding vertices.
