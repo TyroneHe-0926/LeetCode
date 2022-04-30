@@ -6,28 +6,18 @@ class Solution:
         def dfs(start, end, visited):
             if start == end:
                 return 1.0
-                
             visited.add(start)
-
             for node in m[start]:
                 if node not in visited:
                     division = dfs(node, end, visited)
-                    if(division > 0):
+                    if division > 0 :
                         return division * m[start][node]
-            
             return -1  
-        
         m = defaultdict(dict)
-
         for (x,y), (value) in zip(equations, values):
             m[x][y] = value
             m[y][x] = 1.0/value
-        
-        print(m)
-
-        ans = [-1.0 if not m[div1] or not m[div2] else dfs(div1, div2, set()) for (div1, div2) in queries]
-        
-        return ans
+        return [-1.0 if not m[div1] or not m[div2] else dfs(div1, div2, set()) for (div1, div2) in queries]
 
 
 if __name__ == "__main__":
