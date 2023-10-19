@@ -1,6 +1,8 @@
 import time
 
 class Solution():
+    """Expand from center for index i and i+1 (even and odd)"""
+    
     def longestPalindrome(self, s: str) -> str:
         n, start, length = len(s), 0, 0
         for i in range(n):
@@ -11,6 +13,8 @@ class Solution():
         return s[start : start + length]
 
     def get_palindrome(self, s, left, right) -> int:
+        """Longest possible palindrome length from middle out of a center"""
+
         while left > -1 and right < len(s) and s[left] == s[right]:
             left, right = left-1, right+1
         return right-left-1
