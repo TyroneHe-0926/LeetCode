@@ -1,5 +1,4 @@
 # Definition for a binary tree node.
-
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -7,12 +6,21 @@ class TreeNode:
         self.right = None
 
 class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        pval, qval = p.val, q.val
+    lowest = None
 
-        def get_lca(node: 'TreeNode'):
-            if pval > node.val and qval > node.val: return get_lca(node.right)
-            elif pval < node.val and qval < node.val: return get_lca(node.left)
-            else: return node
-        
-        return get_lca(root)
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        low, high = None, None
+        if p.val < q.val:
+            low, high = p, q
+        else:
+            low, high = q, p
+        self.traverse(root, low, high)
+        return self.lowest
+
+
+    def traverse(self, node: TreeNode, low: TreeNode, high: TreeNode):
+        if node.val >= low.val and node.val <= high.val: 
+            self.lowest = node
+            return
+        if node.val < low.val: self.traverse(node.right, low, high)
+        if node.val > high.val: self.traverse(node.left, low, high)
